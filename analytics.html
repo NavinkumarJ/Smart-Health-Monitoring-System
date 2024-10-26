@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Medication Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 40px;
+        }
+
+        /* Patient Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0066cc;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Health Status Indicator */
+        .status {
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .status-good {
+            background-color: #28a745;
+        }
+
+        .status-warning {
+            background-color: #ffc107;
+        }
+
+        .status-critical {
+            background-color: #dc3545;
+        }
+
+        .view-details {
+            background-color: #0066cc;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-details:hover {
+            background-color: #005bb5;
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 60%;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #0066cc;
+            margin: 0;
+        }
+
+        .close {
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .modal-body ul {
+            padding-left: 20px;
+        }
+
+        .modal-body li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Virtual Patient List</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Heart Rate (BPM)</th>
+                    <th>Oxygen Level (%)</th>
+                    <th>Pulse</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sri karthick</td>
+                    <td>45</td>
+                    <td>72</td>
+                    <td>98%</td>
+                    <td>80</td>
+                    <td><span class="status status-good">Good</span></td>
+                    <td><button class="view-details" onclick="showModal('john')">View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Naveen Kumar</td>
+                    <td>60</td>
+                    <td>90</td>
+                    <td>94%</td>
+                    <td>88</td>
+                    <td><span class="status status-warning">Warning</span></td>
+                    <td><button class="view-details" onclick="showModal('mary')">View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Santhosh</td>
+                    <td>38</td>
+                    <td>110</td>
+                    <td>92%</td>
+                    <td>120</td>
+                    <td><span class="status status-critical">Critical</span></td>
+                    <td><button class="view-details" onclick="showModal('alex')">View Details</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for Medication Details -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Medication Details</h2>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Medication data for patients
+        const patientData = {
+            john: {
+                name: 'John Doe',
+                age: 45,
+                medications: [
+                    { name: 'Aspirin', dosage: '75mg daily', notes: 'For blood thinning' },
+                    { name: 'Atorvastatin', dosage: '10mg daily', notes: 'For cholesterol control' }
+                ]
+            },
+            mary: {
+                name: 'Mary Smith',
+                age: 60,
+                medications: [
+                    { name: 'Metformin', dosage: '500mg twice daily', notes: 'For diabetes control' },
+                    { name: 'Lisinopril', dosage: '20mg daily', notes: 'For blood pressure' }
+                ]
+            },
+            alex: {
+                name: 'Alex Johnson',
+                age: 38,
+                medications: [
+                    { name: 'Ventolin Inhaler', dosage: '2 puffs as needed', notes: 'For asthma' },
+                    { name: 'Prednisone', dosage: '10mg daily', notes: 'For inflammation control' }
+                ]
+            }
+        };
+
+        // Function to show the modal with medication details
+        function showModal(patientId) {
+            const patient = patientData[patientId];
+            const modalBody = document.getElementById('modal-body');
+            const modalTitle = document.getElementById('modal-title');
+
+            // Update modal title
+            modalTitle.innerText = `${patient.name} - Medications`;
+
+            // Create the list of medications
+            let medicationDetails = '<ul>';
+            patient.medications.forEach(medication => {
+                medicationDetails += `
+                    <li>
+                        <strong>Medication:</strong> ${medication.name} <br>
+                        <strong>Dosage:</strong> ${medication.dosage} <br>
+                        <strong>Notes:</strong> ${medication.notes}
+                    </li><br>`;
+            });
+            medicationDetails += '</ul>';
+
+            // Insert medication details into the modal body
+            modalBody.innerHTML = medicationDetails;
+
+            // Show the modal
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

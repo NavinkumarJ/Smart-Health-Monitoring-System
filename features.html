@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Health Care Monitoring System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #0066cc;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background-color: #e0f7fa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 30%;
+        }
+
+        .stat-box h2 {
+            margin: 0;
+            color: #00695c;
+        }
+
+        .stat-box p {
+            font-size: 1.2rem;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart {
+            width: 30%;
+            background-color: #ffffff;
+            border: 2px solid #0066cc;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        footer {
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        nav {
+            background-color: #0066cc;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Smart Health</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="stats">
+            <div class="stat-box">
+                <h2>Heart Rate</h2>
+                <p id="heart-rate">72 BPM</p>
+            </div>
+            <div class="stat-box">
+                <h2>Oxygen Level</h2>
+                <p id="oxygen-level">98%</p>
+            </div>
+            <div class="stat-box">
+                <h2>Pulse Rate</h2>
+                <p id="pulse-rate">75 BPM</p>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart">
+                <h3>Heart Rate</h3>
+                <canvas id="heartChart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Oxygen Level</h3>
+                <canvas id="oxygenChart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Pulse Rate</h3>
+                <canvas id="pulseChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2024 Smart Health Care Monitoring System
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Heart Rate Chart
+        const heartCtx = document.getElementById('heartChart').getContext('2d');
+        const heartChart = new Chart(heartCtx, {
+            type: 'line',
+            data: {
+                labels: ['10s', '20s', '30s', '40s', '50s', '60s'],
+                datasets: [{
+                    label: 'Heart Rate',
+                    data: [72, 75, 73, 78, 76, 74],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    fill: false,
+                    borderWidth: 2
+                }]
+            }
+        });
+
+        // Oxygen Level Chart
+        const oxygenCtx = document.getElementById('oxygenChart').getContext('2d');
+        const oxygenChart = new Chart(oxygenCtx, {
+            type: 'line',
+            data: {
+                labels: ['10s', '20s', '30s', '40s', '50s', '60s'],
+                datasets: [{
+                    label: 'Oxygen Level',
+                    data: [98, 97, 99, 98, 96, 97],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    fill: false,
+                    borderWidth: 2
+                }]
+            }
+        });
+
+        // Pulse Rate Chart
+        const pulseCtx = document.getElementById('pulseChart').getContext('2d');
+        const pulseChart = new Chart(pulseCtx, {
+            type: 'line',
+            data: {
+                labels: ['10s', '20s', '30s', '40s', '50s', '60s'],
+                datasets: [{
+                    label: 'Pulse Rate',
+                    data: [75, 77, 76, 74, 78, 76],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    fill: false,
+                    borderWidth: 2
+                }]
+            }
+        });
+    </script>
+</body>
+</html>

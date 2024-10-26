@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Virtual Patient List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 40px;
+        }
+
+        /* Patient Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0066cc;
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Health Status Indicator */
+        .status {
+            padding: 10px 15px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .status-good {
+            background-color: #28a745;
+        }
+
+        .status-warning {
+            background-color: #ffc107;
+        }
+
+        .status-critical {
+            background-color: #dc3545;
+        }
+
+        .view-details {
+            background-color: #0066cc;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .view-details:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Virtual Patient List</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Patient Name</th>
+                    <th>Age</th>
+                    <th>Heart Rate (BPM)</th>
+                    <th>Oxygen Level (%)</th>
+                    <th>Pulse</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sri karthick</td>
+                    <td>45</td>
+                    <td>72</td>
+                    <td>98%</td>
+                    <td>80</td>
+                    <td><span class="status status-good">Good</span></td>
+                    <td><button class="view-details">View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Naveen Kumar</td>
+                    <td>60</td>
+                    <td>90</td>
+                    <td>94%</td>
+                    <td>88</td>
+                    <td><span class="status status-warning">Warning</span></td>
+                    <td><button class="view-details">View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Santhosh</td>
+                    <td>38</td>
+                    <td>110</td>
+                    <td>92%</td>
+                    <td>120</td>
+                    <td><span class="status status-critical">Critical</span></td>
+                    <td><button class="view-details">View Details</button></td>
+                </tr>
+                <tr>
+                    <td>Navin kumar J</td>
+                    <td>50</td>
+                   

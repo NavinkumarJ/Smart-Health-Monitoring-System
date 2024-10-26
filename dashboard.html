@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Monitoring Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+        }
+
+        /* Sidebar navigation */
+        .sidebar {
+            width: 250px;
+            background-color: #0066cc;
+            height: 100%;
+            position: fixed;
+            
+            padding-top: 20px;
+        }
+
+        .sidebar h2 {
+            color: white;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px 20px;
+            text-align: center;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #005bb5;
+        }
+
+        /* Main content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .header button {
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Dashboard Stats Section */
+        .dashboard-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 30%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-box h2 {
+            font-size: 2rem;
+            margin: 0;
+            color: #0066cc;
+        }
+
+        .stat-box p {
+            margin: 5px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Chart Section */
+        .chart-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .chart-box {
+            background-color: white;
+            width: 48%;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-box h3 {
+            margin: 0 0 20px 0;
+            color: #0066cc;
+        }
+
+        /* Notifications Section */
+        .notifications {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .notifications h3 {
+            color: #0066cc;
+        }
+
+        .notifications ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notifications ul li {
+            background-color: #f4f6f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+        }
+        nav {
+            float: right;
+            background-color: #0066cc;
+            padding: 15px 20px;
+            display: flex;
+            width: 80%;
+            position:relative;
+            z-index: 1;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">Smart Health</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="features.html">Features</a></li>
+            <li><a href="dashboard.html">Dashboard</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Smart Health</h2>
+        <ul>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="patients.html">Patient List</a></li>
+            <li><a href="analytics.html">Analytics</a></li>
+            <li><a href="#">Settings</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Dashboard</h1>
+            <button>Add Patient</button>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="dashboard-stats">
+            <div class="stat-box">
+                <h2>10</h2>
+                <p>Patients Monitored</p>
+            </div>
+            <div class="stat-box">
+                <h2>5</h2>
+                <p>Alerts Today</p>
+            </div>
+            <div class="stat-box">
+                <h2>98%</h2>
+                <p>Average Oxygen Level</p>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="chart-section">
+            <div class="chart-box">
+                <h3>Heart Rate Trends</h3>
+                <canvas id="heartRateChart"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>Oxygen Level Trends</h3>
+                <canvas id="oxygenLevelChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Notifications/Alerts Section -->
+        <div class="notifications">
+            <h3>Alerts</h3>
+            <ul>
+                <li>Patient A has an abnormal heart rate.</li>
+                <li>Patient B's oxygen level dropped below 90%.</li>
+                <li>Patient C requires immediate medical attention.</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2024 Smart Health Care Monitoring System</p>
+        </div>
+    </div>
+
+    <script>
+        // Heart Rate Chart
+        var ctx1 = document.getElementById('heartRateChart').getContext('2d');
+        var heartRateChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Heart Rate (BPM)',
+                    data: [72, 75, 73, 78, 76, 74],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    fill: false,
+                    borderWidth: 2
+                }]
+            }
+        });
+
+        // Oxygen Level Chart
+        var ctx2 = document.getElementById('oxygenLevelChart').getContext('2d');
+        var oxygenLevelChart = new Chart(ctx2, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Oxygen Level (%)',
+                    data: [98, 97, 99, 98, 96, 97],
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    fill: false,
+                    borderWidth: 2
+                }]
+            }
+        });
+    </script>
+
+</body>
+</html>
